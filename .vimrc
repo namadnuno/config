@@ -645,4 +645,6 @@ let g:markdown_fenced_languages = ['javascript', 'ruby', 'sh', 'yaml', 'javascri
 let g:import_cost_always_open_split = 0
 set noswapfile
 
-
+map <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
+map <leader>t :tabe <C-R>=expand("%:p:h") . "/" <CR>
+map <leader>s :split <C-R>=expand("%:p:h") . "/" <CR>
