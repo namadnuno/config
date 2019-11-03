@@ -55,7 +55,7 @@ set lazyredraw                 " Do not redraw the screen while
 
 set listchars=tab:▸\           " ┐
 set listchars+=trail:·         " │ Use custom symbols to
-set listchars+=eol:↴           " │ represent invisible characters
+" set listchars+=eol:↴           " │ represent invisible characters
 set listchars+=nbsp:_          " ┘
 
 set magic                      " Enable extended regexp
@@ -184,19 +184,35 @@ call vundle#begin('~/.vim/plugins')
     Plugin 'StanAngeloff/php.vim'
     Plugin 'arnaud-lb/vim-php-namespace'
     Plugin 'stephpy/vim-php-cs-fixer'
+    Plugin 'vsushkov/vim-phpcs'
     Plugin 'algotech/ultisnips-php'
     Plugin 'SirVer/ultisnips'
     Plugin 'honza/vim-snippets'
     Plugin 'jwalton512/vim-blade'
+    Plugin 'tobyS/vmustache'
+    Plugin 'tobyS/pdv'
+    Plugin 'vim-airline/vim-airline'
+    Plugin 'vim-airline/vim-airline-themes'
+
+    Plugin 'chriskempson/base16-vim'
+
+    Plugin 'gosukiwi/vim-atom-dark'
+    Plugin 'arcticicestudio/nord-vim'
 call vundle#end()
 
 filetype on
 
+" php-cs-fixer
 autocmd BufWritePost *.php silent! call PhpCsFixerFixFile()
 nnoremap <silent><leader>pcd :call PhpCsFixerFixDirectory()<CR>
 nnoremap <silent><leader>pcf :call PhpCsFixerFixFile()<CR>
 
+" PDV
+let g:pdv_template_dir = $HOME ."/.vim/plugins/pdv/templates_snip"
+nnoremap <buffer> <C-p> :call pdv#DocumentWithSnip()<CR>
 
+" vim phpcs
+noremap <F6> :Phpcs<CR>
 
 let g:UltiSnipsExpandTrigger='<tab>'
 let g:UltiSnipsJumpForwardTrigger='<c-b>'
@@ -204,6 +220,14 @@ let g:UltiSnipsJumpBackwardTrigger='<c-z>'
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit='vertical'
+
+" Airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'default'
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+
 " | Plugins - Emmet                                                    |
 " ----------------------------------------------------------------------
 
@@ -427,6 +451,8 @@ endif
 
 " colorscheme solarized          " Use custom color scheme
 
+colorscheme onedark
+
 
 " ----------------------------------------------------------------------
 " | Key Mappings                                                       |
@@ -479,9 +505,6 @@ nmap <leader>n :call ToggleRelativeLineNumbers()<CR>
 nmap <leader>ss :call StripTrailingWhitespaces()<CR>
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-" [,t ] Toggle NERDTree
-map <leader>t :NERDTreeToggle<CR>
 
 nnoremap <C-\> :NERDTreeToggle<CR>
 inoremap <C-\> <ESC>:NERDTreeToggle<CR>
@@ -585,8 +608,6 @@ com! Formatjson %!python -m json.tool
 set list
 set nowrap
 set backupcopy=yes
-
-colorscheme onedark
 
 " EJS
 au BufNewFile,BufRead *.{ejs,mjml} set filetype=html
