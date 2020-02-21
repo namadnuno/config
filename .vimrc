@@ -161,6 +161,12 @@ call vundle#begin('~/.vim/plugins')
     Plugin 'tpope/vim-repeat'
     Plugin 'tpope/vim-surround'
     Bundle 'wakatime/vim-wakatime'
+    Plugin 'arcticicestudio/nord-vim'
+
+    Plugin 'junegunn/fzf'
+    Plugin 'sonph/onehalf'
+
+
     Plugin 'wavded/vim-stylus'
     Plugin 'digitaltoad/vim-jade'
     Plugin 'pangloss/vim-javascript'
@@ -197,7 +203,6 @@ call vundle#begin('~/.vim/plugins')
     Plugin 'chriskempson/base16-vim'
 
     Plugin 'gosukiwi/vim-atom-dark'
-    Plugin 'arcticicestudio/nord-vim'
 call vundle#end()
 
 filetype on
@@ -451,7 +456,9 @@ endif
 
 " colorscheme solarized          " Use custom color scheme
 
-colorscheme onedark
+" colorscheme onedark
+
+colorscheme nord
 
 
 " ----------------------------------------------------------------------
@@ -669,3 +676,11 @@ set noswapfile
 map <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 map <leader>t :tabe <C-R>=expand("%:p:h") . "/" <CR>
 map <leader>s :split <C-R>=expand("%:p:h") . "/" <CR>
+
+
+" ZFZ
+let g:fzf_tags_command = 'ctags -R'
+let g:fzf_commands_expect = 'alt-enter,ctrl-x'
+let g:fzf_buffers_jump = 1
+nmap <leader><tab> <plug>(fzf-maps-n)
+
