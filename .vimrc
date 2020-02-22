@@ -677,6 +677,7 @@ map <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 map <leader>t :tabe <C-R>=expand("%:p:h") . "/" <CR>
 map <leader>s :split <C-R>=expand("%:p:h") . "/" <CR>
 
+map <leader>p :FZF <CR>
 
 " ZFZ
 let g:fzf_tags_command = 'ctags -R'
